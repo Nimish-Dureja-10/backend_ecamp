@@ -28,6 +28,9 @@ async function main() {
   console.log(`MongoDB connection successfull`);
 }
 
+app.get("/",(req,res)=>{
+  res.json("Backend working successfully");
+});
 
 app.use("/api/v1",userRoutes);
 app.use("/api/v1",noticeBoardRoutes);
