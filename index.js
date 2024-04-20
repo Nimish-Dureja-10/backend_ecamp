@@ -29,10 +29,6 @@ async function main() {
 }
 
 
-app.get("/",(req,res)=>{
-  res.json("Backend working fine");
-})
-
 app.use("/api/v1",userRoutes);
 app.use("/api/v1",noticeBoardRoutes);
 
