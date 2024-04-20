@@ -29,7 +29,7 @@ async function main() {
 }
 
 app.get("/",(req,res)=>{
-  res.json("Backend working successfully");
+  res.send("Backend working successfully");
 });
 
 app.use("/api/v1",userRoutes);
