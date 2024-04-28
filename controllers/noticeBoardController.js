@@ -3,7 +3,7 @@ import Users from "../models/userModel.js";
 
 export const getNotice = async (req,res) => {
     try{
-        const data = await noticeBoard.find();
+        const data = await noticeBoard.find().sort({createdAt:-1});
         res.status(200).json({
             success:true,
             message : "Notice board details",
@@ -21,16 +21,16 @@ export const getNotice = async (req,res) => {
 
 export const postNotice = async (req,res) => {
     try{
-        const userId = await Users.findById(req.user._id);
-        const {title,description} = req.body;
-        if(!title || !description) {
+        // const userId = await Users.findById(req.user._id);
+        const {name,title,description} = req.body;
+        if(!title || !description || !name) {
             return res.status(401).json({
                 success:false,
                 message:"All fields are mandatory"
             });
         }
         const notice = await noticeBoard.create({
-            title,description,createdBy:userId
+            title,description,createdBy:name
         });
         res.status(201).json({
             success:true,
